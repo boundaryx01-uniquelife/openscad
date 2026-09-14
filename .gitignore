@@ -1,0 +1,11 @@
+# Generated meshes, previews, and past releases are stored locally only.
+archive/
+deliverables/
+*.stl
+*.3mf
+*.png
+*.zip
+
+# OpenSCAD editor/session files
+*.bak
+*.autosave
