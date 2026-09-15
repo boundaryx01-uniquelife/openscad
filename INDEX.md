@@ -3,7 +3,8 @@
 ## 현재 사용 파일
 
 - `projects/keycap-local/`: OpenSCAD에서 로컬로 쓰는 완성 버전. `open-keycap.cmd`로 실행합니다.
-- `projects/makerworld-practice/`: MakerWorld Parametric Model Maker용 최신 배포본입니다. 키캡 전용·하우징 전용·다중 플레이트 파일은 `makerworld-keycap-clicker-v19-separated.zip`에 함께 들어 있습니다.
+- `projects/makerworld-practice/`: MakerWorld Parametric Model Maker용 키캡·클리커 하우징 작업 파일입니다.
+- `projects/makerworld-font-tester/`: MakerWorld 서버에 있는 한국어 폰트를 빠르게 검증하는 테스트 타일입니다.
 - `projects/makerworld-practice/makerworld-exports/`: MakerWorld에서 생성·내려받은 3MF와 SCAD 사본.
 - `deliverables/`: 다른 곳으로 옮기거나 공유할 ZIP 파일.
 

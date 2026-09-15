@@ -12,7 +12,7 @@ MakerWorld에는 용도별 SCAD를 각각 올리는 방식을 권장합니다. `
 
 `keycap colour`과 `legend colour`은 색 이름으로 선택하며, 미리보기에서 해당 색을 바로 확인할 수 있습니다. 글자는 원본 메시의 불리언 오류를 피하기 위해 상단에 0.5 mm 돌출한 별도 부품으로 생성합니다. 내보낸 STL은 색상 정보를 보존하지 않으므로 다색 출력은 Bambu Studio에서 키캡과 글자 부품을 따로 불러와 필라멘트를 지정해야 합니다.
 
-한글은 `font preset`에서 **노토 산스 KR / Noto Sans KR**을 먼저 선택하세요. 이 값은 `Noto Sans KR:style=Bold`를 직접 요청합니다. MakerWorld에서 글리프가 확인된 한국어 후보는 Noto Sans KR과 NanumGothic만 남겼습니다. 맑은 고딕과 Liberation Sans는 MakerWorld에서 한글이 네모로 표시돼 선택지에서 제거했습니다. 서버에 설치되지 않은 TTF 파일은 이 단일 SCAD에 직접 첨부할 수 없습니다.
+한글은 `font preset`에서 **Noto Sans KR:style=Bold**를 먼저 선택하세요. 스크린샷에서 MakerWorld 목록에 보인 Noto Sans KR, Noto Serif KR, NanumGothic, Black Han Sans, Gothic A1, Gowun Batang, Gowun Dodum, Hahmlet, IBM Plex Sans KR, Dongle, Gamja Flower, Hi Melody, Moirai One, Nanum Brush Script를 후보로 추가했습니다. 맑은 고딕과 Liberation Sans는 MakerWorld에서 한글이 네모로 표시돼 선택지에서 제거했습니다. 서버에 설치되지 않은 TTF 파일은 이 단일 SCAD에 직접 첨부할 수 없습니다.
 
 기본값 `use original blank keycap = true`는 원본 3MF의 외피와 체결부를 사용합니다. 원본 체결부는 `socket bottom height`만큼 실제로 위로 이동하므로 기본 1 mm에서는 서포트가 필요합니다. 원본 메시의 단면은 고정되어 있어 `stem clearance`는 대체 키캡 모드에서만 적용됩니다.
 
@@ -30,6 +30,6 @@ MakerWorld에는 용도별 SCAD를 각각 올리는 방식을 권장합니다. `
 
 LED 모드는 하우징만으로 전기가 흐르지 않습니다. 3mm 2핀 LED, CR1220, 금속 배터리 접점과 짧은 배선을 별도로 넣어야 합니다. LED의 긴 다리(+)는 배터리 +극, 짧은 다리(-)는 MX 스위치를 거쳐 -극에 연결하는 구성이 기본입니다. 극성을 반대로 연결하면 LED가 켜지지 않습니다.
 
-한글 폰트는 MakerWorld 서버에 설치된 폰트부터 시험해야 합니다. 외부 TTF를 SCAD에 함께 넣는 방식은 지원되지 않습니다.
+한글 폰트는 MakerWorld 서버에 설치된 폰트부터 시험해야 합니다. 외부 TTF를 SCAD에 함께 넣는 방식은 지원되지 않습니다. 먼저 `projects/makerworld-font-tester/makerworld-font-tester.scad`로 후보 폰트를 확인한 뒤, 깨지지 않는 폰트만 키캡 파일에서 선택하세요. 글자 입력칸이 보이려면 입력 변수는 반드시 실제 `text()` 형상 생성에 사용되어야 합니다.
 
 하우징 전용 파일에서는 housing form으로 키링 바, 컴팩트, 데스크 패드를 선택할 수 있습니다. 데스크 패드는 외곽 여백을 조절하고, ase option = 자석 홈으로 지름과 깊이를 조절할 수 있는 자석 홈 4개를 추가합니다. 키링 바는 고리 구멍과 앵커 지름도 조절할 수 있습니다.
