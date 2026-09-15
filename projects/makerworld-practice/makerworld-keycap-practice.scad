@@ -67,8 +67,8 @@ magnet_depth = 1.5; // [0.8:0.1:2.5]
 /* [글자 / Legend] */
 // 한 글자씩 순서대로 입력 / One character per key
 legend_text = "가나다라";
-// MakerWorld font names must match the server font list exactly.
-font_preset = "Noto Sans KR:style=Bold"; // [Noto Sans KR,Noto Sans KR:style=Black,Noto Sans KR:style=Bold,Noto Sans KR:style=Regular,Noto Serif KR,Noto Serif KR:style=Black,Noto Serif KR:style=Bold,Noto Serif KR:style=Regular,NanumGothic,Black Han Sans:style=Regular,Gothic A1:style=Black,Gothic A1:style=Bold,Gothic A1:style=Medium,Gothic A1:style=Regular,Gothic A1:style=SemiBold,Gowun Batang:style=Bold,Gowun Batang:style=Regular,Gowun Dodum:style=Regular,Hahmlet:style=Black,Hahmlet:style=Bold,Hahmlet:style=Medium,Hahmlet:style=Regular,Hahmlet:style=SemiBold,IBM Plex Sans KR:style=Bold,IBM Plex Sans KR:style=Medium,IBM Plex Sans KR:style=Regular,IBM Plex Sans KR:style=Thin,Dongle:style=Bold,Dongle:style=Regular,Gamja Flower:style=Regular,Hi Melody:style=Regular,Moirai One:style=Regular,Nanum Brush Script:style=Regular]
+font_family = "Noto Sans KR"; // [Noto Sans KR,Noto Serif KR,NanumGothic,Black Han Sans,Gothic A1,Gowun Batang,Gowun Dodum,Hahmlet,IBM Plex Sans KR,Dongle,Gamja Flower,Hi Melody,Moirai One,Nanum Brush Script]
+font_style = "Bold"; // [Regular,Bold,Black,ExtraBold,SemiBold,Medium,Light,ExtraLight,Thin]
 font_size = 7.5; // [2:0.1:12]
 // Original mesh uses a shallow raised legend for robust slicing.
 legend_depth = 0.5; // [0.2:0.1:1]
@@ -94,7 +94,8 @@ function clicker_key_count() = layout_columns * layout_rows;
 function housing_frame_margin(form) = form == "데스크 패드 / Desk pad" ? desk_frame_margin : 0;
 
 function char_at(value, index) = index < len(value) ? value[index] : "";
-function selected_font(choice) = choice;
+function selected_font(family, style) =
+    style == "Regular" ? family : str(family, ":style=", style);
 function colour_value(choice) =
     choice == "검정 / Black" ? [0.08,0.09,0.12] :
     choice == "흰색 / White" ? [0.96,0.96,0.96] :
@@ -218,7 +219,7 @@ module legend(index) {
         rotate([0,0,legend_rotation])
             linear_extrude(height=legend_depth+0.08)
                 text(char_at(legend_text,index), size=font_size,
-                     font=selected_font(font_preset),
+                     font=selected_font(font_family, font_style),
                      halign="center", valign="center");
 }
 

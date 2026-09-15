@@ -12,7 +12,7 @@ MakerWorld에는 용도별 SCAD를 각각 올리는 방식을 권장합니다. `
 
 `keycap colour`과 `legend colour`은 색 이름으로 선택하며, 미리보기에서 해당 색을 바로 확인할 수 있습니다. 글자는 원본 메시의 불리언 오류를 피하기 위해 상단에 0.5 mm 돌출한 별도 부품으로 생성합니다. 내보낸 STL은 색상 정보를 보존하지 않으므로 다색 출력은 Bambu Studio에서 키캡과 글자 부품을 따로 불러와 필라멘트를 지정해야 합니다.
 
-한글은 `font preset`에서 **Noto Sans KR:style=Bold**를 먼저 선택하세요. 스크린샷에서 MakerWorld 목록에 보인 Noto Sans KR, Noto Serif KR, NanumGothic, Black Han Sans, Gothic A1, Gowun Batang, Gowun Dodum, Hahmlet, IBM Plex Sans KR, Dongle, Gamja Flower, Hi Melody, Moirai One, Nanum Brush Script를 후보로 추가했습니다. 맑은 고딕과 Liberation Sans는 MakerWorld에서 한글이 네모로 표시돼 선택지에서 제거했습니다. 서버에 설치되지 않은 TTF 파일은 이 단일 SCAD에 직접 첨부할 수 없습니다.
+한글은 `font family`에서 **Noto Sans KR**을 고르고 `font style`에서 **Bold**를 먼저 시험하세요. 스크린샷에서 MakerWorld 목록에 보인 Noto Sans KR, Noto Serif KR, NanumGothic, Black Han Sans, Gothic A1, Gowun Batang, Gowun Dodum, Hahmlet, IBM Plex Sans KR, Dongle, Gamja Flower, Hi Melody, Moirai One, Nanum Brush Script를 후보로 추가했습니다. 맑은 고딕과 Liberation Sans는 MakerWorld에서 한글이 네모로 표시돼 선택지에서 제거했습니다. 서버에 설치되지 않은 TTF 파일은 이 단일 SCAD에 직접 첨부할 수 없습니다.
 
 기본값 `use original blank keycap = true`는 원본 3MF의 외피와 체결부를 사용합니다. 원본 체결부는 `socket bottom height`만큼 실제로 위로 이동하므로 기본 1 mm에서는 서포트가 필요합니다. 원본 메시의 단면은 고정되어 있어 `stem clearance`는 대체 키캡 모드에서만 적용됩니다.
 
