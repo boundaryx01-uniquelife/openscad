@@ -1,6 +1,6 @@
 # MakerWorld 연습용 키캡 업로드
 
-MakerWorld에는 용도별 SCAD를 각각 올리는 방식을 권장합니다. `makerworld-keycap-only-v21.scad`는 키캡 전용, `makerworld-clicker-housing-only-v21.scad`는 하우징 전용이며 각 파일에는 관련 메뉴만 표시됩니다. `makerworld-keycap-clicker-multiplate-v21.scad`는 키캡과 하우징을 한 3MF의 별도 플레이트로 내보내는 전용 파일입니다.
+MakerWorld에는 용도별 SCAD를 각각 올리는 방식을 권장합니다. `makerworld-keycap-only-v21.scad`는 키캡 전용, `makerworld-clicker-housing-only-v21.scad`는 하우징 전용이며 각 파일에는 관련 메뉴만 표시됩니다. `makerworld-keycap-clicker-multiplate-v21.scad`는 키캡과 하우징을 한 3MF의 별도 플레이트로 내보내는 전용 파일입니다. `v21`과 `v22` 키캡 생성 파일에는 검증된 MakerWorld 한국어 폰트 선택 UI가 모두 반영되어 있습니다.
 
 1. MakerWorld에 로그인합니다.
 2. MakerLab의 **Parametric Model Maker**를 엽니다.

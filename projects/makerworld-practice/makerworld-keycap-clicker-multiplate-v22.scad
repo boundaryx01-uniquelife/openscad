@@ -13963,9 +13963,8 @@ magnet_depth = 1.5; // [0.8:0.1:2.5]
 /* [글자 / Legend] */
 // 한 글자씩 순서대로 입력 / One character per key
 legend_text = "가나다라";
-// MakerWorld에서 먼저 Noto Sans KR을 시험하세요 / Test Noto Sans KR first
-font_preset = "노토 산스 KR / Noto Sans KR"; // [노토 산스 KR / Noto Sans KR,나눔고딕 / NanumGothic]
-font_weight = "Bold"; // [Regular,Bold]
+font_family = "Noto Sans KR"; // [Noto Sans KR,Noto Serif KR,NanumGothic,Black Han Sans,Gothic A1,Gowun Batang,Gowun Dodum,Hahmlet,IBM Plex Sans KR,Dongle,Gamja Flower,Hi Melody,Moirai One,Nanum Brush Script]
+font_style = "Bold"; // [Regular,Bold,Black,ExtraBold,SemiBold,Medium,Light,ExtraLight,Thin]
 font_size = 7.5; // [2:0.1:12]
 // Original mesh uses a shallow raised legend for robust slicing.
 legend_depth = 0.5; // [0.2:0.1:1]
@@ -13989,10 +13988,8 @@ function clicker_key_count(layout) = layout_columns * layout_rows;
 function housing_frame_margin(form) = form == "데스크 패드 / Desk pad" ? desk_frame_margin : 0;
 
 function char_at(value, index) = index < len(value) ? value[index] : "";
-function font_family(choice) =
-    choice == "노토 산스 KR / Noto Sans KR" ? "Noto Sans KR" :
-    choice == "나눔고딕 / NanumGothic" ? "NanumGothic" :
-    "Noto Sans KR";
+function selected_font(family, style) =
+    style == "Regular" ? family : str(family, ":style=", style);
 function colour_value(choice) =
     choice == "검정 / Black" ? [0.08,0.09,0.12] :
     choice == "흰색 / White" ? [0.96,0.96,0.96] :
@@ -14116,7 +14113,7 @@ module legend(index) {
         rotate([0,0,legend_rotation])
             linear_extrude(height=legend_depth+0.08)
                 text(char_at(legend_text,index), size=font_size,
-                     font=str(font_family(font_preset), ":style=", font_weight),
+                     font=selected_font(font_family, font_style),
                      halign="center", valign="center");
 }
 
