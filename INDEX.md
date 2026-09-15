@@ -5,6 +5,7 @@
 - `projects/keycap-local/`: OpenSCAD에서 로컬로 쓰는 완성 버전. `open-keycap.cmd`로 실행합니다.
 - `projects/makerworld-practice/`: MakerWorld Parametric Model Maker용 키캡·클리커 하우징 작업 파일입니다.
 - `projects/makerworld-font-tester/`: MakerWorld 서버에 있는 한국어 폰트를 빠르게 검증하는 테스트 타일입니다.
+- `docs/makerworld-fonts.md`: MakerWorld에서 확인한 한국어 폰트와 제한 사항 기록입니다.
 - `projects/makerworld-practice/makerworld-exports/`: MakerWorld에서 생성·내려받은 3MF와 SCAD 사본.
 - `deliverables/`: 다른 곳으로 옮기거나 공유할 ZIP 파일.
 
