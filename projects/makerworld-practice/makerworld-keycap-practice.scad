@@ -64,6 +64,20 @@ base_option = "평면 바닥 / Flat"; // [평면 바닥 / Flat,자석 홈 / Magn
 magnet_diameter = 8; // [5:0.1:12]
 magnet_depth = 1.5; // [0.8:0.1:2.5]
 
+/* [하우징 글자 / Housing label] */
+housing_label = false;
+housing_label_text = "한글 클릭커";
+housing_label_font_family = "Noto Sans KR"; // [Noto Sans KR,Noto Serif KR,NanumGothic,Black Han Sans,Gothic A1,Gowun Batang,Gowun Dodum,Hahmlet,IBM Plex Sans KR,Dongle,Gamja Flower,Hi Melody,Moirai One,Nanum Brush Script]
+housing_label_font_style = "Bold"; // [Regular,Bold,Black,ExtraBold,SemiBold,Medium,Light,ExtraLight,Thin]
+housing_label_surface = "바닥 / Bottom"; // [바닥 / Bottom,앞면 / Front,뒷면 / Back,왼쪽 / Left,오른쪽 / Right]
+housing_label_mode = "각인 / Engraved"; // [각인 / Engraved,돌출 / Raised]
+housing_label_size = 5; // [2:0.1:12]
+housing_label_depth = 0.5; // [0.2:0.1:1]
+housing_label_x = 0; // [-40:0.5:40]
+housing_label_y = 0; // [-40:0.5:40]
+housing_label_rotation = 0; // [-180:1:180]
+
+
 /* [글자 / Legend] */
 // 한 글자씩 순서대로 입력 / One character per key
 legend_text = "가나다라";
@@ -96,6 +110,8 @@ function housing_frame_margin(form) = form == "데스크 패드 / Desk pad" ? de
 function char_at(value, index) = index < len(value) ? value[index] : "";
 function selected_font(family, style) =
     style == "Regular" ? family : str(family, ":style=", style);
+function housing_label_is_engraved() =
+    housing_label && (housing_label_mode == "각인 / Engraved" || housing_label_surface == "바닥 / Bottom");
 function colour_value(choice) =
     choice == "검정 / Black" ? [0.08,0.09,0.12] :
     choice == "흰색 / White" ? [0.96,0.96,0.96] :
@@ -161,6 +177,45 @@ module printable_keycap() {
     else keycap_shell();
 }
 
+module housing_label_text_2d() {
+    rotate([0,0,housing_label_rotation])
+        text(housing_label_text, size=housing_label_size,
+             font=selected_font(housing_label_font_family, housing_label_font_style),
+             halign="center", valign="center");
+}
+
+module housing_label_geometry(width, depth, cut=false) {
+    label_depth = housing_label_depth + (cut ? 0.02 : 0);
+    side_z = case_height/2 + housing_label_y;
+    if (housing_label && housing_label_text != "") {
+        if (housing_label_surface == "바닥 / Bottom")
+            translate([housing_label_x,housing_label_y,-0.01])
+                linear_extrude(height=label_depth)
+                    housing_label_text_2d();
+        else if (housing_label_surface == "앞면 / Front")
+            translate([housing_label_x,-depth/2+(cut ? housing_label_depth : -0.01),side_z])
+                rotate([90,0,0])
+                    linear_extrude(height=label_depth)
+                        housing_label_text_2d();
+        else if (housing_label_surface == "뒷면 / Back")
+            translate([housing_label_x,depth/2-(cut ? housing_label_depth : -0.01),side_z])
+                rotate([-90,0,0])
+                    linear_extrude(height=label_depth)
+                        housing_label_text_2d();
+        else if (housing_label_surface == "왼쪽 / Left")
+            translate([-width/2+(cut ? housing_label_depth : -0.01),housing_label_x,side_z])
+                rotate([90,0,90])
+                    linear_extrude(height=label_depth)
+                        housing_label_text_2d();
+        else if (housing_label_surface == "오른쪽 / Right")
+            translate([width/2-(cut ? housing_label_depth : -0.01),housing_label_x,side_z])
+                rotate([90,0,-90])
+                    linear_extrude(height=label_depth)
+                        housing_label_text_2d();
+    }
+}
+
+
 module clicker_housing(cols=1, rows=1) {
     frame_margin = housing_frame_margin(housing_form);
     width = case_width + (cols-1)*spacing + 2*frame_margin;
@@ -209,7 +264,12 @@ module clicker_housing(cols=1, rows=1) {
                 translate([sx*(width/2-frame_margin/2-case_wall),
                            sy*(depth/2-frame_margin/2-case_wall),-0.01])
                     cylinder(h=magnet_depth+0.02, d=magnet_diameter);
+        if (housing_label_is_engraved())
+            housing_label_geometry(width, depth, cut=true);
     }
+    if (housing_label && !housing_label_is_engraved())
+        color(colour_value(legend_colour))
+            housing_label_geometry(width, depth, cut=false);
 }
 
 module legend(index) {
