@@ -34,7 +34,7 @@ LED 모드는 하우징만으로 전기가 흐르지 않습니다. 3mm 2핀 LED,
 
 하우징 전용 파일과 키캡+하우징 파일에는 `housing label` 섹션이 있습니다. 기본값은 꺼짐이며, 켜면 바닥, 앞면, 뒷면, 왼쪽, 오른쪽에 한글 문구를 넣을 수 있습니다. 글자는 `각인 / Engraved` 또는 `돌출 / Raised` 중에서 선택합니다. `돌출 / Raised`는 별도 색상 객체로 생성되므로 Bambu Studio에서 본체와 다른 필라멘트를 지정할 수 있습니다.
 
-바닥면은 출력 베드에 닿는 면이므로 돌출 글자를 아래로 만들면 정상 출력이 어렵습니다. 그래서 `housing label surface = 바닥 / Bottom`일 때는 `housing label mode`를 돌출로 선택해도 실제 모델에서는 각인 방식으로 처리합니다.
+바닥면은 출력 베드에 닿는 면이므로 돌출 글자를 아래로 만들면 정상 출력이 어렵습니다. 그래서 `housing label surface = 바닥 / Bottom`일 때는 `housing label mode`를 돌출로 선택해도 실제 모델에서는 각인 방식으로 처리합니다. 바닥 글자는 출력물을 뒤집어 봤을 때 읽히도록 `housing label bottom mirror`가 기본으로 켜져 있습니다.
 
 한글 폰트는 MakerWorld 서버에 설치된 폰트부터 시험해야 합니다. 외부 TTF를 SCAD에 함께 넣는 방식은 지원되지 않습니다. 먼저 `projects/makerworld-font-tester/makerworld-font-tester.scad`로 후보 폰트를 확인한 뒤, 깨지지 않는 폰트만 키캡 파일에서 선택하세요. 글자 입력칸이 보이려면 입력 변수는 반드시 실제 `text()` 형상 생성에 사용되어야 합니다.
 

@@ -76,6 +76,7 @@ housing_label_depth = 0.5; // [0.2:0.1:1]
 housing_label_x = 0; // [-40:0.5:40]
 housing_label_y = 0; // [-40:0.5:40]
 housing_label_rotation = 0; // [-180:1:180]
+housing_label_bottom_mirror = true;
 
 
 /* [글자 / Legend] */
@@ -178,10 +179,12 @@ module printable_keycap() {
 }
 
 module housing_label_text_2d() {
+    mirror_x = housing_label_surface == "바닥 / Bottom" && housing_label_bottom_mirror ? -1 : 1;
     rotate([0,0,housing_label_rotation])
-        text(housing_label_text, size=housing_label_size,
-             font=selected_font(housing_label_font_family, housing_label_font_style),
-             halign="center", valign="center");
+        scale([mirror_x,1])
+            text(housing_label_text, size=housing_label_size,
+                 font=selected_font(housing_label_font_family, housing_label_font_style),
+                 halign="center", valign="center");
 }
 
 module housing_label_geometry(width, depth, cut=false) {
